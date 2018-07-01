@@ -1,0 +1,13 @@
+entrypoint: bundle exec rackup -p $PORT
+env: flex
+runtime: ruby
+
+env_variables:
+  SECRET_KEY_BASE: fa98fd95eea93e3d08cdae56dc255b2631a3b7ea690eeb130c1faf9a4bcdbc4b36de979e866a911f8433f467b5f1cdb1a7f86960035953a439ccd7d1ac3bcd8a
+#  DATABASE_URL: postgres://postgres:password@104.198.89.137:5432/autocomplete
+#  ELASTICSEARCH_URL: http://35.187.196.169:9200
+  DATABASE_URL: postgres://postgres:password@35.194.99.133:5432/autocomplete
+  ELASTICSEARCH_URL: http://35.200.60.112:9200
+
+beta_settings:
+  cloud_sql_instances: autocomplete-208112:asia-northeast1:autocomplete-sql

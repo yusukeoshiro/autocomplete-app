@@ -1,0 +1,11 @@
+{
+  "query": {
+    "match": {
+      "name": {
+        "query":                "PARAM1",
+        "minimum_should_match": "75%",
+        "fuzziness": "1"
+      }
+    }
+  }
+}

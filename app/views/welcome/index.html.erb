@@ -1,0 +1,87 @@
+
+
+<div style="margin-top: 100px;"></div>
+
+<div class="ui container">
+
+    <div class="ui segment">
+        <div class="ui form">
+            <div class="grouped fields">
+                <label>How do you want me to find your product?</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input id="method-db" type="radio" name="method" class="radio" checked="checked" value="db">
+                        <label for="method-db">Do a full table scan on a PostgreSQL database!</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input id="method-es" type="radio" name="method" class="radio" value="es">
+                        <label for="method-es">Do a fuzzy match query on an Elasticsearch cluster!</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align: center;">
+        <h1 class="ui blue header">Search Your Product!</h1>
+        <div class="ui fluid category search">
+            <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search product..." style="width: 500px;">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+    $(function(){
+        let method = 'db';
+
+        $('.ui.search')
+        .search({
+            apiSettings: {
+                url: '/api/autocomplete/'+ method +'?q={query}'
+            },
+            fields: {
+                results : 'items',
+                title   : 'name'
+            },
+            minCharacters : 1
+        });
+
+
+        $(".radio").click(function() {
+            method = $(this).find('input:radio').prop('value');
+
+            $('.ui.search')
+            .search({
+                apiSettings: {
+                    url: '/api/autocomplete/'+ method +'?q={query}'
+                },
+                fields: {
+                    results : 'items',
+                    title   : 'name'
+                },
+                minCharacters : 1
+            });
+
+
+        });
+
+
+
+
+
+    })
+
+</script>
